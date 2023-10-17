@@ -76,7 +76,7 @@ function checkAnswer() {
             nextSequence();
         }, 1000);
 
-    } else if ((gamePattern[userClickedPattern.length - 1] !== userClickedPattern[userClickedPattern.length - 1]) && (gamePattern.length === userClickedPattern.length)) {
+    } else if ((gamePattern[userClickedPattern.length - 1] !== userClickedPattern[userClickedPattern.length - 1]) || (gamePattern[userClickedPattern.length - 1] !== userClickedPattern[userClickedPattern.length - 1] && gamePattern.length === userClickedPattern.length)) {
         console.log('Failure');
         playSound('wrong');
         $('body').toggleClass('game-over');
