@@ -98,11 +98,15 @@ function checkAnswer() {
             $('h1#level-title, h2#game-record').toggleClass('game-over');
         }, 200);
         $('h1#level-title').text("Game Over! Press Any Key or Click Here to Restart");
-        if (gameRecord < level) {
-            gameRecord = level;
+        if (gameRecord < level - 1) {
+            gameRecord = level - 1;
         }
         $('h2#game-record').toggle();
-        $('h2#game-record').text("Current Record: Level " + gameRecord);
+        if (gameRecord === 0) {
+            $('h2#game-record').text("Current Record: None ");
+        } else {
+            $('h2#game-record').text("Current Record: Level " + gameRecord);
+        }
         startOver();
     }
 }
