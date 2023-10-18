@@ -80,9 +80,11 @@ function checkAnswer() {
     if ((gamePattern[userClickedPattern.length - 1] === userClickedPattern[userClickedPattern.length - 1]) && (gamePattern.length === userClickedPattern.length)) {
         console.log('Success');
         playSound('success');
+        $('h1#level-title, h2#game-record').toggleClass('success');
         $('h1#level-title').text("Level " + level + " Completed");
         $('div[type="button"]').toggleClass('disable-click');
         setTimeout(() => {
+            $('h1#level-title, h2#game-record').toggleClass('success');
             $('h1#level-title').text("Level " + level);
             $('div[type="button"]').toggleClass('disable-click')
             nextSequence();
@@ -91,9 +93,9 @@ function checkAnswer() {
     } else if ((gamePattern[userClickedPattern.length - 1] !== userClickedPattern[userClickedPattern.length - 1]) || (gamePattern[userClickedPattern.length - 1] !== userClickedPattern[userClickedPattern.length - 1] && gamePattern.length === userClickedPattern.length)) {
         console.log('Failure');
         playSound('wrong');
-        $('body').toggleClass('game-over');
+        $('h1#level-title, h2#game-record').toggleClass('game-over');
         setTimeout(() => {
-            $('body').toggleClass('game-over');
+            $('h1#level-title, h2#game-record').toggleClass('game-over');
         }, 200);
         $('h1#level-title').text("Game Over! Press Any Key or Click Here to Restart");
         if (gameRecord < level) {

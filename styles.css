@@ -1,31 +1,50 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   text-align: center;
-  background-color: #011F3F;
+  background-image: url(./img/city.gif);
+  background-repeat: no-repeat;
+  background-size: cover;
   cursor: default;
+  user-select: none;
+  color: white;
+}
+
+#level-title,
+#game-record  {
+  font-family: 'Press Start 2P', cursive;
+  background-color: #0e0434;
+  width: fit-content;
+  padding: 1rem;
+  margin-right: auto;
+  margin-left: auto;
+  border-radius: 10px;
+  border: 3px solid white;
 }
 
 #level-title {
-  font-family: 'Press Start 2P', cursive;
   font-size: 2rem;
-  margin:  5%;
-  color: #FEF2BF;
+  margin-top: 5%;
+  margin-bottom: 5%;
 }
 
 #game-record {
-  font-family: 'Press Start 2P', cursive;
   font-size: 1.5rem;
-  color: #FEF2BF;
+  margin-top: 5%;
 }
 
 .container {
   display: block;
   width: 50%;
   margin: auto;
-
 }
 
 .btn {
-  margin: 25px;
   display: inline-block;
   height: 200px;
   width: 200px;
@@ -33,9 +52,12 @@ body {
   border-radius: 20%;
 }
 
+.success {
+  color: greenyellow;
+}
+
 .game-over {
-  background-color: red;
-  opacity: 0.8;
+  color: red;
 }
 
 .red {
