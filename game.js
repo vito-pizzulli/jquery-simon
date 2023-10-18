@@ -4,8 +4,9 @@ let gamePattern = [];
 let userClickedPattern = [];
 let gameStarted = false;
 let level = 0;
+let gameRecord = 0;
 
-/* Random Game Colour */
+/* Game start with key press */
 $(document).keydown(function() {
     if (!gameStarted) {
         playSound("newgame");
@@ -18,7 +19,20 @@ $(document).keydown(function() {
     }
 });
 
-/* User Chosen Colour */
+/* Game start with click */
+$('h1#level-title').click(function() {
+    if (!gameStarted) {
+        playSound("newgame");
+        $('h1#level-title').text("Game Is Starting...");
+        $('h2#game-record').toggle();
+        setTimeout(() => {
+            gameStarted = true;
+            nextSequence();
+        }, 1000);
+    }
+});
+
+/* User chosen colour with animation and sound */
 $('div[type="button"]').click(function() {   
     if (gameStarted) {
         let userChosenColour = $(this).attr('id');
@@ -31,7 +45,7 @@ $('div[type="button"]').click(function() {
     }
 });
 
-/* Random Number Generator Function from 0 to 3 */
+/* Function that makes the next game sequence start, with animation and sound */
 function nextSequence() {
     userClickedPattern = [];
     level++;
@@ -41,13 +55,11 @@ function nextSequence() {
     console.log("Random Color: " + randomChosenColour);
     gamePattern.push(randomChosenColour);
     console.log("Game Pattern: " + gamePattern);
-
-    /* Flash & Sound Play */
     $('div#' + randomChosenColour).fadeOut(100).fadeIn(100);
     playSound(randomChosenColour);
 }
 
-/* Sound Player Function */
+/* Function that plays a sound */
 function playSound(name) {
     let sound = $("audio#" + name + "-sound")[0];
     sound.pause();
@@ -55,7 +67,7 @@ function playSound(name) {
     sound.play();
 }
 
-/* Button Pressed Animation Function*/
+/* Function that animates the pressed button */
 function animatePress(currentColour) {
     $('div#' + currentColour).toggleClass('pressed');
     setTimeout(() => {
@@ -63,7 +75,7 @@ function animatePress(currentColour) {
     }, 100);
 }
 
-/* Correct Answer Checker Function */
+/* Function that checks if the colour chosen by the user is correct, if it's wrong makes the game end, if the entire sequence is correct it makes the next level start */
 function checkAnswer() {
     if ((gamePattern[userClickedPattern.length - 1] === userClickedPattern[userClickedPattern.length - 1]) && (gamePattern.length === userClickedPattern.length)) {
         console.log('Success');
@@ -83,14 +95,17 @@ function checkAnswer() {
         setTimeout(() => {
             $('body').toggleClass('game-over');
         }, 200);
-        $('h1#level-title').text("Game Over, Press Any Key to Restart");
+        $('h1#level-title').text("Game Over! Press Any Key or Click Here to Restart");
+        if (gameRecord < level) {
+            gameRecord = level;
+        }
         $('h2#game-record').toggle();
-        $('h2#game-record').text("Current Record: Level " + level);
+        $('h2#game-record').text("Current Record: Level " + gameRecord);
         startOver();
     }
 }
 
-/* Game Restart Function */
+/* Function that restarts variables before the user can start a new game */
 function startOver() {
     gameStarted = false;
     level = 0;
