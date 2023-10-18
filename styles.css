@@ -55,6 +55,7 @@ body {
 @media (max-width: 991px) {
   .btn {
     width: 350px;
+    border: 20px solid black;
   }
 }
 
