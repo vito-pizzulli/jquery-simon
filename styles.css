@@ -1,18 +1,19 @@
 body {
   text-align: center;
   background-color: #011F3F;
+  cursor: default;
 }
 
 #level-title {
   font-family: 'Press Start 2P', cursive;
-  font-size: 3rem;
+  font-size: 2rem;
   margin:  5%;
   color: #FEF2BF;
 }
 
 #game-record {
   font-family: 'Press Start 2P', cursive;
-  font-size: 2rem;
+  font-size: 1.5rem;
   color: #FEF2BF;
 }
 
